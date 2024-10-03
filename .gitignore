@@ -1,4 +1,4 @@
-HELP.md
+tinder-ai-backend/HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
