@@ -31,6 +31,8 @@ public class TinderAiBackendApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner() {
 		return args -> {
+			profileRepository.deleteAll();
+			conversationRepository.deleteAll();
 			Profile profile = new Profile(
 					"1",
 					"Allan",
@@ -41,6 +43,17 @@ public class TinderAiBackendApplication {
 					Gender.MALE,
 					"allan.jpg",
 					"INTP"
+			);
+			profile = new Profile(
+					"2",
+					"Kevin",
+					"Abok",
+					20,
+					"I am a software engineer specialized in JavaScript frameworks like ReactJs",
+					"Luo",
+					Gender.MALE,
+					"kevin.jpg",
+					"Yes"
 			);
 			profileRepository.save(profile);
 			System.out.println("Profiles:");
