@@ -44,7 +44,7 @@ public class TinderAiBackendApplication {
 					"allan.jpg",
 					"INTP"
 			);
-			profile = new Profile(
+		Profile	profile1 = new Profile(
 					"2",
 					"Kevin",
 					"Abok",
@@ -56,6 +56,7 @@ public class TinderAiBackendApplication {
 					"Yes"
 			);
 			profileRepository.save(profile);
+			profileRepository.save(profile1);
 			System.out.println("Profiles:");
 			profileRepository.findAll().forEach(System.out::println);
 
