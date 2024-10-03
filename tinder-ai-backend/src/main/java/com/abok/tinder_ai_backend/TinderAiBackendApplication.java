@@ -6,6 +6,9 @@ import com.abok.tinder_ai_backend.enumeration.Gender;
 import com.abok.tinder_ai_backend.profiles.Profile;
 import com.abok.tinder_ai_backend.repository.ConversationRepository;
 import com.abok.tinder_ai_backend.repository.ProfileRepository;
+import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,6 +27,9 @@ public class TinderAiBackendApplication {
 	@Autowired
 	private ConversationRepository conversationRepository;
 
+	@Autowired
+	private OpenAiChatModel chatModel;
+
 	public static void main(String[] args) {
 		SpringApplication.run(TinderAiBackendApplication.class, args);
 	}
@@ -31,6 +37,9 @@ public class TinderAiBackendApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner() {
 		return args -> {
+			Prompt prompt = new Prompt("Who is the developer who founded Tailwindcss");
+			ChatResponse response = chatModel.call(prompt);
+			System.out.println(response.getResult().getOutput());
 			profileRepository.deleteAll();
 			conversationRepository.deleteAll();
 			Profile profile = new Profile(
